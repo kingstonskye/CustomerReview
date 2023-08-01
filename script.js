@@ -39,27 +39,28 @@ const customers = [
 
 let index = 0;
 
-function updateCustomerInfo() {
-    customerImage.src = customers[currentIndex].image;
-    customerName.textContent = customers[currentIndex].name;
-    customerText.textContent = customers[currentIndex].review;
-}
+    function updateCustomerInfo() {
+        customerImage.src = customers[index].image;
+        customerName.textContent = customers[index].name;
+        customerText.textContent = customers[index].review;
+    }
 
-//function for prev button
+    function showPreviousCustomer() {
+        index = (index - 1 + customers.length) % customers.length;
+        updateCustomerInfo();
+    }
 
-function showPreviousCustomer() {
-    index = (index - 1 + customers.length) % customers.length;
+    function showNextCustomer() {
+        index = (index + 1) % customers.length;
+        updateCustomerInfo();
+    }
+
+    document.querySelector('.prevBtn').addEventListener('click', showPreviousCustomer);
+    document.querySelector('.nextBtn').addEventListener('click', showNextCustomer);
+
     updateCustomerInfo();
-}
-
-function showNextCustomer() {
-    index = (index + 1 + customers.length) % customers.length;
-    updateCustomerInfo();
-}
-
-document.querySelector('.prevBtn').addEventListener('click', showPreviousCustomer);
-document.querySelector('.nextBtn').addEventListener('click', showNextCustomer);
-
-updateCustomerInfo();
-
 })();
+
+
+
+
